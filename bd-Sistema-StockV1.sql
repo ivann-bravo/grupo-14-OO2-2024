@@ -1,3 +1,6 @@
+CREATE DATABASE  IF NOT EXISTS `bd-grupo14` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `bd-grupo14`;
+
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: sistema-stock-grupo14
