@@ -1,13 +1,13 @@
-package com.unla.grupo_14_OO2_2024;
+package com.unla.grupo14;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Grupo14Oo22024Application {
+public class Grupo14Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Grupo14Oo22024Application.class, args);
+		SpringApplication.run(Grupo14Application.class, args);
 	}
 
 }

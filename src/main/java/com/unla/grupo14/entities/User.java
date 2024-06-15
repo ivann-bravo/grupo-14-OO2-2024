@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024.entities;
+package com.unla.grupo14.entities;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024.configuration;
+package com.unla.grupo14.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.unla.grupo_14_OO2_2024.services.implementation.UserService;
+import com.unla.grupo14.services.implementation.UserService;
 
 @Configuration
 @EnableWebSecurity
