@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Lotes</title>
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Lotes</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cantidad</th>
+                    <th>Fecha de Recepción</th>
+                    <th>Proveedor</th>
+                    <th>Precio de Compra</th>
+                    <th>Almacén</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="lote : ${lotes}">
+                    <td th:text="${lote.idLote}">ID Lote</td>
+                    <td th:text="${lote.cantidad}">Cantidad</td>
+                    <td th:text="${#dates.format(lote.fechaRecepcion, 'dd/MM/yyyy')}">Fecha de Recepción</td>
+                    <td th:text="${lote.proveedor}">Proveedor</td>
+                    <td th:text="${lote.precioCompra}">Precio de Compra</td>
+                    <td th:text="${lote.almacen.nombre}">Almacén</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/lotes/registrar" class="btn">Registrar Nuevo Lote</a>
+    </div>
+</body>
+</html>
