@@ -24,7 +24,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idUser;
 
 	@Column(name="username", unique=true, nullable=false, length=45)
 	private String username;
@@ -42,6 +42,9 @@ public class User {
 
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRoles = new HashSet<>();
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+    private Set<Venta> ventas = new HashSet<>();
 
 	public User(String username, String password, boolean enabled) {
 		this.username = username;
