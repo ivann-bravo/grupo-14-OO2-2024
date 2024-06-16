@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024.controllers;
+package com.unla.grupo14.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.unla.grupo_14_OO2_2024.helpers.ViewRouteHelper;
+import com.unla.grupo14.helpers.ViewRouteHelper;
 
 @Controller
 @RequestMapping("/")

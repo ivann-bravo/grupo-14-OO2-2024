@@ -1,10 +1,10 @@
 spring:
   application:
-    name: grupo-14-OO2-2024
+    name: grupo14
   datasource:
-    url: jdbc:mysql://localhost:3306/bd-grupo-14-OO2-2024
+    url: jdbc:mysql://localhost:3306/bd-grupo14
     username: root
-    password: 42359488
+    password: 123456
   jpa:
     show-sql: true
     hibernate:

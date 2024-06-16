@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024;
+package com.unla.grupo14;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

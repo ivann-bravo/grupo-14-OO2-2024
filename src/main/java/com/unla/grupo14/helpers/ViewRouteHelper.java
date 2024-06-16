@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024.helpers;
+package com.unla.grupo14.helpers;
 
 public class ViewRouteHelper {
 	/**** Views ****/

@@ -1,4 +1,4 @@
-package com.unla.grupo_14_OO2_2024.repositories;
+package com.unla.grupo14.repositories;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.unla.grupo_14_OO2_2024.entities.User;
+import com.unla.grupo14.entities.User;
 
 
 @Repository("userRepository")
