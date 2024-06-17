@@ -5,7 +5,7 @@ import com.unla.grupo14.entities.Producto;
 
 public interface IProductoService {
 	
-    Producto registrarProducto(Producto producto);
+    Producto registrarProducto(Producto producto, int cantMinima);
     
     List<Producto> obtenerTodosLosProductos();
     
