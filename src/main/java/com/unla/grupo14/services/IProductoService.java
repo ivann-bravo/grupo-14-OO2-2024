@@ -8,4 +8,8 @@ public interface IProductoService {
     Producto registrarProducto(Producto producto);
     
     List<Producto> obtenerTodosLosProductos();
+    
+    Producto findById(int idProducto);
+    
+    List<Producto> obtenerProductosSinLoteAsociado();
 }
