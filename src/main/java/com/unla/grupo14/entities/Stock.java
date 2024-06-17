@@ -1,5 +1,6 @@
 package com.unla.grupo14.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,13 +19,13 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idStock;
 
+    @Column(name="cantidadAlmacenada", nullable = false)
+    private int cantidadAlmacenada;
+
+    @Column(name="cantMinima", nullable = false)
+    private int cantMinima;
+    
     @OneToOne
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
-
-    @OneToOne(mappedBy = "stock")
-    private Almacen almacen;
-    
-    @OneToOne(mappedBy = "stock")
-    private Pedido pedido;
 }

@@ -10,7 +10,7 @@ import com.unla.grupo14.repositories.IProductoRepository;
 import com.unla.grupo14.services.IProductoService;
 
 @Service("productoService")
-public class ProductoService implements IProductoService  {
+public class ProductoService implements IProductoService {
 	
 	@Autowired
 	private IProductoRepository productoRepository;
@@ -28,5 +28,4 @@ public class ProductoService implements IProductoService  {
     public List<Producto> obtenerTodosLosProductos() {
         return productoRepository.findAll();
     }
-    
 }

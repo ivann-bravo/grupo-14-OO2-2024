@@ -38,4 +38,10 @@ public class Producto {
 
     @OneToOne(mappedBy = "producto")
     private Item item;
+    
+    @OneToOne(mappedBy = "producto")
+    private Pedido pedido;
+    
+    @OneToOne(mappedBy = "producto")
+    private Lote lote;
 }

@@ -17,17 +17,17 @@ public class LoteService implements ILoteService  {
 	@Autowired
     private ILoteRepository loteRepository;
 	
-    @Autowired
-    private IAlmacenRepository almacenRepository;
+    //@Autowired
+    //private IAlmacenRepository almacenRepository;
     
     public Lote registrarLote(Lote lote) {
     	
     	Lote nuevoLote = loteRepository.save(lote);
     	
-    	Almacen almacen = nuevoLote.getAlmacen();
+    	//Almacen almacen = nuevoLote.getAlmacen();
     	
-    	almacen.setCantidadAlmacenada(almacen.getCantidadAlmacenada() + nuevoLote.getCantidad());
-        almacenRepository.save(almacen);
+    	//almacen.setCantidadAlmacenada(almacen.getCantidadAlmacenada() + nuevoLote.getCantidad());
+        //almacenRepository.save(almacen);
         
         return nuevoLote;
     }

@@ -4,7 +4,7 @@
     <title>Registrar Lote</title>
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
-<body class="bg-light">
+<body class="bg-dark">
     <div class="container mt-5">
         <div class="card">
             <div class="card-header bg-primary text-white">
@@ -28,9 +28,15 @@
                         <label for="precioCompra">Precio de Compra:</label>
                         <input type="number" id="precioCompra" th:field="*{precioCompra}" step="0.01" required class="form-control"/>
                     </div>
+					<div class="form-group mt-3">
+						<label for="almacen">Almacén:</label>
+							<select id="almacen" th:field="*{almacen}" required class="form-control">
+								<option th:each="almacen : ${almacenes}" th:value="${almacen}" th:text="${almacen.nombre}">Seleccione un Almacén</option>
+							</select>
+					</div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">Registrar</button>
-                        <a href="/lotes" class="btn btn-secondary ml-2">Volver a la lista de lotes</a>
+                        <a href="/lotes" class="btn btn-dark ml-2">Volver a la lista de lotes</a>
                     </div>
                     <div th:if="${error}" class="mt-3">
                         <p th:text="${error}" class="text-danger"></p>

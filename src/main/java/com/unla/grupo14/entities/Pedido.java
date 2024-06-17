@@ -26,6 +26,6 @@ public class Pedido {
     private String proveedor;
     
     @OneToOne
-    @JoinColumn(name = "stock_id", nullable = false)
-    private Stock stock;
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 }

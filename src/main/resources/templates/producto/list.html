@@ -2,12 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Lista de Productos</title>
-    <link href="css/styles.css" rel="stylesheet" />
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="container">
+<body class="d-flex justify-content-center align-items-center vh-100 ">
+    <div class="container text-center">
         <h1>Lista de Productos</h1>
-        <table class="table">
+        <table class="table my-5">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -27,7 +28,7 @@
                 </tr>
             </tbody>
         </table>
-        <a href="/productos/registrar" class="btn">Registrar Nuevo Producto</a>
+        <a href="/productos/registrar" class="btn btn-secondary">Registrar Nuevo Producto</a>
     </div>
 </body>
 </html>
