@@ -19,7 +19,7 @@ public class ViewRouteHelper {
     public final static String LOTE_LIST = "lote/list";
     public final static String LOTE_FORM = "lote/form";
     
- // VENTA
+    // VENTA
     public final static String VENTA_FORM = "venta/form";
     
 	/**** Redirects ****/
