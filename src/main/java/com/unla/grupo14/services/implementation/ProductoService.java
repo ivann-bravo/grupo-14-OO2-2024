@@ -28,4 +28,14 @@ public class ProductoService implements IProductoService {
     public List<Producto> obtenerTodosLosProductos() {
         return productoRepository.findAll();
     }
+	
+	@Override
+    public Producto findById(int idProducto) {
+        return productoRepository.findById(idProducto).orElse(null);
+    }
+
+	@Override
+	public List<Producto> obtenerProductosSinLoteAsociado() {
+		return productoRepository.findProductosSinLoteAsociado();
+	}
 }

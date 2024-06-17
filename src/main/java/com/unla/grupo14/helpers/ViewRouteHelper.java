@@ -19,6 +19,10 @@ public class ViewRouteHelper {
     public final static String LOTE_LIST = "lote/list";
     public final static String LOTE_FORM = "lote/form";
     
+    // ALMACEN
+    public final static String ALMACEN_LIST = "almacen/list";
+    public final static String ALMACEN_FORM = "almacen/form";
+    
 	/**** Redirects ****/
 	public final static String ROUTE = "/index";
 	
