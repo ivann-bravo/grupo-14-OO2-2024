@@ -22,8 +22,11 @@ public class ViewRouteHelper {
     // ALMACEN
     public final static String ALMACEN_LIST = "almacen/list";
     public final static String ALMACEN_FORM = "almacen/form";
-    
-	/**** Redirects ****/
-	public final static String ROUTE = "/index";
+  
+    // VENTA
+    public final static String VENTA_FORM = "venta/form";
+  
+	  /**** Redirects ****/
+	  public final static String ROUTE = "/index";
 	
 }
