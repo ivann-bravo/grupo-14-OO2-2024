@@ -10,6 +10,8 @@ public class ViewRouteHelper {
 	public final static String USER_LOGIN = "user/login";
 	public final static String USER_LOGOUT = "user/logout";
 	
+	public final static String USER_REGISTERFORM = "user/registerform";
+	
     // PRODUCTO
     //public final static String PRODUCTO_INDEX = "producto/index";
     public final static String PRODUCTO_FORM = "producto/form";
@@ -25,6 +27,8 @@ public class ViewRouteHelper {
   
     // VENTA
     public final static String VENTA_FORM = "venta/form";
+    
+ 
   
 	  /**** Redirects ****/
 	  public final static String ROUTE = "/index";

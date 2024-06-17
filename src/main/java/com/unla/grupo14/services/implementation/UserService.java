@@ -15,11 +15,13 @@ import org.springframework.stereotype.Service;
 
 import com.unla.grupo14.entities.UserRole;
 import com.unla.grupo14.repositories.IUserRepository;
+import com.unla.grupo14.repositories.IUserRoleRepository;
 
 @Service("userService")
 public class UserService implements UserDetailsService {
 
 	private IUserRepository userRepository;
+	
 
 	public UserService(IUserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -48,4 +50,16 @@ public class UserService implements UserDetailsService {
 	public List<com.unla.grupo14.entities.User> obtenerTodosLosUser() {
         return userRepository.findAll();
     }
+	
+	// para la pagina de registro de usuario: 
+	
+	private IUserRoleRepository userRoleRepository;
+	
+	public com.unla.grupo14.entities.User saveUser(com.unla.grupo14.entities.User user){
+		return userRepository.save(user);
+	}
+	
+	public UserRole saveUserRole(UserRole userRole){
+		return userRoleRepository.save(userRole);
+	}
 }
