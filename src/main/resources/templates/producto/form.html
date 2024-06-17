@@ -32,6 +32,10 @@
                         <label for="precioVenta">Precio Venta:</label>
                         <input type="number" id="precioVenta" th:field="*{precioVenta}" step="0.01" required class="form-control"/>
                     </div>
+					<div class="form-group mt-3">
+						<label for="cantMinima">Cantidad Mínima:</label>
+						<input type="number" id="cantMinima" name="cantMinima" required class="form-control"/>
+					</div>
                     <div class="mt-4">
                         <button type="submit" class="btn btn-secondary">Registrar</button>
                         <a href="/productos" class="btn btn-dark ml-2">Volver a la lista de productos</a>

@@ -38,4 +38,9 @@ public class StockService implements IStockService {
 	public void verificarNivelesDeStockPeriodicamente() {
 		verificarNivelesDeStock();
 	}
+	
+	@Override
+	public Stock registrarStock(Stock stock) {
+		return stockRepository.save(stock);
+	}
 }

@@ -21,6 +21,7 @@ public class ProductoService implements IProductoService {
 		if (productoRepository.findByCodigo(producto.getCodigo()) != null) {
             throw new IllegalArgumentException("El código del producto ya existe");
         }
+		
         return productoRepository.save(producto);
     }
 

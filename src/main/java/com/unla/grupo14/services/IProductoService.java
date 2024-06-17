@@ -12,4 +12,5 @@ public interface IProductoService {
     Producto findById(int idProducto);
     
     List<Producto> obtenerProductosSinLoteAsociado();
+
 }
