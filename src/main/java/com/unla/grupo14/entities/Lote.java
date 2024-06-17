@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,4 +39,8 @@ public class Lote {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "almacen_id", nullable = false)
     private Almacen almacen;
+    
+    @OneToOne
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 }
