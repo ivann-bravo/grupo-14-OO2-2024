@@ -44,4 +44,8 @@ public class UserService implements UserDetailsService {
 		}
 		return new ArrayList<>(grantedAuthorities);
 	}
+	
+	public List<com.unla.grupo14.entities.User> obtenerTodosLosUser() {
+        return userRepository.findAll();
+    }
 }

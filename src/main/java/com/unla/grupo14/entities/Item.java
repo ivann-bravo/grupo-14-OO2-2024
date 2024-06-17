@@ -1,5 +1,6 @@
 package com.unla.grupo14.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Item {
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "venta_id", nullable = false)
     private Venta venta;
 }
