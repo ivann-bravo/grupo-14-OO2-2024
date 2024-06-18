@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.grupo14.entities.Producto;
 import com.unla.grupo14.services.IProductoService;
@@ -18,31 +19,31 @@ import java.util.List;
 @RequestMapping("/productos")
 public class ProductoController {
 
-    @Autowired
-    private IProductoService productoService;
+	@Autowired
+	private IProductoService productoService;
 
-    @GetMapping("")
-    public String index(Model model) {
-        List<Producto> productos = productoService.obtenerTodosLosProductos();
-        model.addAttribute("productos", productos);
-        return ViewRouteHelper.PRODUCTO_LIST;
-    }
+	@GetMapping("")
+	public String index(Model model) {
+		List<Producto> productos = productoService.obtenerTodosLosProductos();
+		model.addAttribute("productos", productos);
+		return ViewRouteHelper.PRODUCTO_LIST;
+	}
 
-    @GetMapping("/registrar")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("producto", new Producto());
-        return ViewRouteHelper.PRODUCTO_FORM;
-    }
+	@GetMapping("/registrar")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("producto", new Producto());
+		return ViewRouteHelper.PRODUCTO_FORM;
+	}
 
-    @PostMapping("/registrar")
-    public String registrarProducto(@ModelAttribute("producto") Producto producto, Model model) {
-    	try {
-            productoService.registrarProducto(producto);
-            return "redirect:/productos";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            return ViewRouteHelper.PRODUCTO_FORM;
-        }
-    }
+	@PostMapping("/registrar")
+	public String registrarProducto(@ModelAttribute("producto") Producto producto,
+			@RequestParam("cantMinima") int cantMinima, Model model) {
+		try {
+			productoService.registrarProducto(producto, cantMinima);
+			return "redirect:/productos";
+		} catch (IllegalArgumentException e) {
+			model.addAttribute("error", e.getMessage());
+			return ViewRouteHelper.PRODUCTO_FORM;
+		}
+	}
 }
-
