@@ -51,6 +51,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 	
+	public com.unla.grupo14.entities.User obtenerUserPorId(int id) {
+		return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+	
+	
 	// para la pagina de registro de usuario: 
 	
 	private IUserRoleRepository userRoleRepository;

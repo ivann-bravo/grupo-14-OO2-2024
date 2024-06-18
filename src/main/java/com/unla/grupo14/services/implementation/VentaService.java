@@ -26,16 +26,17 @@ public class VentaService implements IVentaService{
 	private IStockRepository stockRepository;
 
 	@Transactional
-	public void registrarVenta(Venta venta) {
-		// Guardar la venta en la base de datos
+    @Override
+    public void registrarVenta(Venta venta) {
+        // Guardar la venta en la base de datos
         Venta nuevaVenta = ventaRepository.save(venta);
 
-     // Obtener el item asociado a la venta
+        // Obtener el item asociado a la venta
         Item item = nuevaVenta.getItem();
         if (item != null) {
             Producto producto = item.getProducto();
             Stock stock = producto.getStock();
-            
+
             if (stock != null) {
                 // Calcular la nueva cantidad en el stock
                 int nuevaCantidad = stock.getCantidadAlmacenada() - item.getCantidad();
