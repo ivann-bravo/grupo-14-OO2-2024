@@ -73,7 +73,7 @@ public class VentaController {
             // Guardar la venta (con el item incluido)
             ventaService.registrarVenta(venta);
 
-            return "redirect:/ventas";
+            return "redirect:/";
         } catch (Exception e) {
             model.addAttribute("error", "Error al registrar la venta: " + e.getMessage());
             return ViewRouteHelper.VENTA_FORM;
