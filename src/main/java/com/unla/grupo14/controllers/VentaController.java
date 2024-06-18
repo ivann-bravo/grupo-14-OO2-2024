@@ -1,5 +1,6 @@
 package com.unla.grupo14.controllers;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +69,11 @@ public class VentaController {
             item.setVenta(venta);
 
             // Asignar el item a la venta
-            venta.setItem(item);
+            if (venta.getItems() == null) {
+                venta.setItems(new HashSet<>());
+            }
+            
+            venta.getItems().add(item);
 
             // Guardar la venta (con el item incluido)
             ventaService.registrarVenta(venta);

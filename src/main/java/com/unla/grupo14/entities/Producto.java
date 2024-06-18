@@ -39,8 +39,8 @@ public class Producto {
     @OneToOne(mappedBy = "producto")
     private Stock stock;
 
-    @OneToOne(mappedBy = "producto")
-    private Item item;
+    @OneToMany(mappedBy = "producto")
+    private Set<Item> item;
     
     @OneToOne(mappedBy = "producto")
     private Pedido pedido;
