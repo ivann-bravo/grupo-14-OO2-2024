@@ -63,13 +63,15 @@ public class UserController {
 			// encriptado de la contraseña
 			BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
 			String p = pe.encode(user.getPassword());
-			
-			
 			user.setPassword(p);
 			
-			UserRole userRole = new UserRole(user, role);
-			
+			UserRole userRole = new UserRole(user, "ROLE_USER");
 			user.agregar(userRole);
+			
+			if (role.equals("ROLE_ADMIN")) {
+				UserRole userRoleAdmin = new UserRole(user, role);
+				user.agregar(userRoleAdmin);
+			}
 			
 			userService.saveUser(user);
 			

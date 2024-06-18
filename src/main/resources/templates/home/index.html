@@ -41,6 +41,9 @@
                         <h1 class="mx-auto my-0 text-uppercase">Stocky</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5">Tu sistema de stock preferido!</h2>
                         <a class="btn btn-primary" href="/productos">Registra tus productos</a>
+						<div th:if="${error}" class="alert alert-danger mt-3" role="alert">
+							<span th:text="${error}"></span>
+						</div>
                     </div>
                 </div>
             </div>

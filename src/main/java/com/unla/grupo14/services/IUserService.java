@@ -9,6 +9,8 @@ public interface IUserService {
 	
 	public List<User> obtenerTodosLosUser();
 	
+	public User obtenerUserPorId(int id);
+	
 	public User saveUser(User user);
 	
 }

@@ -2,6 +2,7 @@ package com.unla.grupo14.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,6 +31,6 @@ public class Venta {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(mappedBy = "venta")
+    @OneToOne(mappedBy = "venta", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Item item;
 }
