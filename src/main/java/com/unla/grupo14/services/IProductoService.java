@@ -12,4 +12,10 @@ public interface IProductoService {
     Producto findById(int idProducto);
     
     List<Producto> obtenerProductosSinLoteAsociado();
+
+	void eliminarProducto(int idProducto);
+
+	Producto modificarProducto(Producto productoModificado, int nuevaCantMinima);
+
+	String verificarAsociaciones(Producto producto);
 }
