@@ -42,7 +42,8 @@ public class LoteController {
     public String mostrarFormulario(Model model) {
         model.addAttribute("lote", new Lote());
         
-        List<Producto> productos = productoService.obtenerProductosSinLoteAsociado();
+//        List<Producto> productos = productoService.obtenerProductosSinLoteAsociado();
+        List<Producto> productos = productoService.obtenerTodosLosProductos();
         model.addAttribute("productos", productos);
         
         return ViewRouteHelper.LOTE_FORM;

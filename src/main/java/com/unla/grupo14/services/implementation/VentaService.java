@@ -33,26 +33,28 @@ public class VentaService implements IVentaService{
             Venta nuevaVenta = ventaRepository.save(venta);
 
             // Obtener el item asociado a la venta
-            Item item = nuevaVenta.getItem();
-            if (item != null) {
-                Producto producto = item.getProducto();
-                Stock stock = producto.getStock();
+            for(Item item : nuevaVenta.getItems()) {
+            	if (item != null) {
+                    Producto producto = item.getProducto();
+                    Stock stock = producto.getStock();
 
-                if (stock != null) {
-                    // Calcular la nueva cantidad en el stock
-                    int nuevaCantidad = stock.getCantidadAlmacenada() - item.getCantidad();
-                    if (nuevaCantidad < 0) {
-                        throw new IllegalArgumentException("No hay suficiente stock para el producto " + producto.getNombre());
+                    if (stock != null) {
+                        // Calcular la nueva cantidad en el stock
+                        int nuevaCantidad = stock.getCantidadAlmacenada() - item.getCantidad();
+                        if (nuevaCantidad < 0) {
+                            throw new IllegalArgumentException("No hay suficiente stock para el producto " + producto.getNombre());
+                        }
+                        // Actualizar la cantidad en el stock
+                        stock.setCantidadAlmacenada(nuevaCantidad);
+                        stockRepository.save(stock);
+                    } else {
+                        throw new IllegalArgumentException("El producto " + producto.getNombre() + " no tiene stock asociado");
                     }
-                    // Actualizar la cantidad en el stock
-                    stock.setCantidadAlmacenada(nuevaCantidad);
-                    stockRepository.save(stock);
                 } else {
-                    throw new IllegalArgumentException("El producto " + producto.getNombre() + " no tiene stock asociado");
+                    throw new IllegalArgumentException("La venta no tiene un item asociado");
                 }
-            } else {
-                throw new IllegalArgumentException("La venta no tiene un item asociado");
             }
+            
         } catch (Exception e) {
             // Manejar excepciones específicas o registrar errores
             throw new RuntimeException("Error al registrar la venta: " + e.getMessage(), e);
