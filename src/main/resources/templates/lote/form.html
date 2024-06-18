@@ -31,7 +31,7 @@
 					<div class="form-group mt-3">
 					    <label for="productoId">Producto:</label>
 					    <select id="productoId" name="productoId" class="form-control" required>
-					        <option value="">Seleccione un producto sin lote asociado</option>
+					        <option value="">Seleccione un producto</option>
 					        <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.nombre}"></option>
 					    </select>
 					</div>
