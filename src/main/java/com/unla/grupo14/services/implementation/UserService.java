@@ -17,6 +17,8 @@ import com.unla.grupo14.entities.UserRole;
 import com.unla.grupo14.repositories.IUserRepository;
 import com.unla.grupo14.repositories.IUserRoleRepository;
 
+import jakarta.annotation.PostConstruct;
+
 @Service("userService")
 public class UserService implements UserDetailsService {
 
@@ -29,9 +31,17 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		com.unla.grupo14.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
-		return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
-	}
+        com.unla.grupo14.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
+    }
+	
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		com.unla.grupo14.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
+//		return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
+//	}
 
 	private User buildUser(com.unla.grupo14.entities.User user, List<GrantedAuthority> grantedAuthorities) {
 		return new User(user.getUsername(), user.getPassword(), user.isEnabled(),
@@ -61,5 +71,40 @@ public class UserService implements UserDetailsService {
 	
 	public UserRole saveUserRole(UserRole userRole){
 		return userRoleRepository.save(userRole);
+	}
+	
+	// para solucionar el error al no existir usuarios-roleusuario
+	
+	@PostConstruct
+    public void init() {
+        if (userRepository.count() == 0) {
+        	// la primera ves iniciada el programa se crea un usuario admin
+        	// el cual contiene los dos roles posibles
+        	
+        	// creamos los roles
+            UserRole roleUser = new UserRole();
+            roleUser.setRole("ROLE_USER");
+            UserRole roleUser2 = new UserRole();
+            roleUser2.setRole("ROLE_ADMIN");
+
+            
+            //ahora se crea el usuario
+            com.unla.grupo14.entities.User user = new com.unla.grupo14.entities.User();
+            user.setUsername("admin");
+            user.setPassword("$2a$10$N8N2x/qp1DIcGzvmPGpGFuDcgVGR559xu6qWxdssLNeaMD7h6jR1u");
+            user.setEnabled(true);
+            user.setUserRoles(new HashSet<>(Set.of(roleUser)));
+            
+            //y a los roles le agregamos el usuario
+            roleUser.setUser(user);
+            roleUser2.setUser(user);
+            
+            //y ahora al reves
+            user.agregar(roleUser);
+            user.agregar(roleUser2);
+            
+            //y por ultimo guardamos el usuario, gracias al cascade se guardan junto al rol
+            userRepository.save(user);
+        }
 	}
 }
