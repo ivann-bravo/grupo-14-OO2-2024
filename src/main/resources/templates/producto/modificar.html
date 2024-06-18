@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modificar Producto</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-secondary text-white d-flex justify-content-center">
+                <h1>Modificar Producto</h1>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/productos/modificar}" th:object="${producto}" method="post" class="form">
+                    <input type="hidden" th:field="*{idProducto}" />
+                    <div class="form-group">
+                        <label for="codigo">Código:</label>
+                        <input type="text" id="codigo" th:field="*{codigo}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" th:field="*{nombre}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" id="descripcion" th:field="*{descripcion}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="costo">Costo:</label>
+                        <input type="number" id="costo" th:field="*{costo}" step="0.01" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="precioVenta">Precio Venta:</label>
+                        <input type="number" id="precioVenta" th:field="*{precioVenta}" step="0.01" required class="form-control"/>
+                    </div>
+ 				   <div class="form-group mt-3">
+ 					   <label for="cantMinima">Cantidad Mínima:</label>
+ 					   <input type="number" id="cantMinima" name="cantMinima" required class="form-control"/>
+ 				   </div>
+                    <div class="mt-4">
+						<button type="submit" class="btn btn-secondary">Modificar</button>
+						<a href="/productos" class="btn btn-dark ml-2">Volver a la lista de productos</a>
+				</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
