@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.unla.grupo14.entities.Item;
 import com.unla.grupo14.entities.Producto;
 import com.unla.grupo14.entities.User;
 import com.unla.grupo14.entities.Venta;
@@ -45,13 +47,37 @@ public class VentaController {
     }
 
     @PostMapping("/registrar")
-    public String registrarVenta(@ModelAttribute("venta") Venta venta, Model model) {
+    public String registrarVenta(@ModelAttribute("venta") Venta venta,
+                                 @RequestParam("userId") int userId,
+                                 @RequestParam("productoId") int productoId,
+                                 @RequestParam("cantidad") int cantidad,
+                                 Model model) {
         try {
+            User user = userService.obtenerUserPorId(userId);
+            venta.setUser(user);
+
+            Producto producto = productoService.findById(productoId);
+            if (producto == null) {
+                throw new IllegalArgumentException("Producto no encontrado");
+            }
+
+            // Crear el ítem y asociarlo a la venta
+            Item item = new Item();
+            item.setProducto(producto);
+            item.setCantidad(cantidad);
+            item.setVenta(venta);
+
+            // Asignar el item a la venta
+            venta.setItem(item);
+
+            // Guardar la venta (con el item incluido)
             ventaService.registrarVenta(venta);
+
             return "redirect:/ventas";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al registrar la venta: " + e.getMessage());
             return ViewRouteHelper.VENTA_FORM;
         }
     }
+
 }

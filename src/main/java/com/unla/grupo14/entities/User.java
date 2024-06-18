@@ -64,5 +64,5 @@ public class User {
 	public void agregar(UserRole userRole){
 		userRoles.add(userRole);
 		}
-	}
+}
 
