@@ -74,8 +74,8 @@ public class VentaController {
             ventaService.registrarVenta(venta);
 
             return "redirect:/ventas";
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
+        } catch (Exception e) {
+            model.addAttribute("error", "Error al registrar la venta: " + e.getMessage());
             return ViewRouteHelper.VENTA_FORM;
         }
     }
