@@ -55,4 +55,20 @@ public class PedidoService implements IPedidoService {
     public List<Pedido> findAllPedidos() {
         return pedidoRepository.findAll();
     }
+    
+    @Override
+    public void savePedido(Pedido pedido) {
+        pedidoRepository.save(pedido);
+    }
+    
+    @Override
+    public Pedido findById(int id) {
+        return pedidoRepository.findById(id).orElse(null);
+    }
+    
+    @Override
+    public void deleteById(int id) {
+        pedidoRepository.deleteById(id);
+    }
+    
 }
