@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Ventas - Admin</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <!-- Navigation y encabezado -->
+    <!-- ... -->
+
+    <div class="container text-center">
+        <h1>Lista de Ventas</h1>
+        <div th:if="${ventasAdmin != null}">
+            <table class="table my-5">
+                <thead>
+                    <tr>
+                        <th>ID Venta</th>
+						<th>Comprador</th>
+                        <th>Fecha de Venta</th>
+                        <th>Productos - Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="venta : ${ventasAdmin}">
+                        <td th:text="${venta.idVenta}">ID</td>
+						<td th:text="${venta.user.username}">Comprador</td>
+                        <td th:text="${venta.fechaCompra}">Fecha</td>
+                        <td>
+                            <ul>
+                                <li th:each="item : ${venta.items}">
+                                    <span th:text="${item.producto.nombre}"></span> - <span th:text="${item.cantidad}"></span> Unidades
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:unless="${ventasAdmin != null}">
+            <p>No hay ventas registradas.</p>
+        </div>
+    </div>
+</body>
+</html>
