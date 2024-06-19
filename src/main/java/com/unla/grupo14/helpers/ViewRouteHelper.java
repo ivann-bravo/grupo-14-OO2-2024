@@ -36,5 +36,8 @@ public class ViewRouteHelper {
 	public final static String LOTE = "/lotes";
 	public final static String PEDIDO = "/pedidos";
 	public final static String PRODUCTO = "/productos";
+	public final static String VENTA = "/ventas";
+	public final static String VENTA_USUARIO = "/ventas/usuario";
+	public final static String VENTA_ADMIN = "/ventas/admin";
 	
 }
