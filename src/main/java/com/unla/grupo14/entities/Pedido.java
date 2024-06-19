@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class Pedido {
     @Column(name="proveedor", nullable = false)
     private String proveedor;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 }

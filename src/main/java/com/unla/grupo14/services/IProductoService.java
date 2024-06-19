@@ -18,4 +18,6 @@ public interface IProductoService {
 	Producto modificarProducto(Producto productoModificado, int nuevaCantMinima);
 
 	String verificarAsociaciones(Producto producto);
+	
+	
 }

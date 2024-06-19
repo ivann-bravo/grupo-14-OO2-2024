@@ -1,5 +1,6 @@
 package com.unla.grupo14.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.grupo14.entities.Lote;
+import com.unla.grupo14.entities.Pedido;
 import com.unla.grupo14.entities.Producto;
 import com.unla.grupo14.services.IAlmacenService;
 import com.unla.grupo14.services.ILoteService;
+import com.unla.grupo14.services.IPedidoService;
 import com.unla.grupo14.services.IProductoService;
 import com.unla.grupo14.helpers.ViewRouteHelper;
 
@@ -30,6 +33,9 @@ public class LoteController {
     
     @Autowired
     private IProductoService productoService;
+    
+    @Autowired
+    private IPedidoService pedidoService;
     
     @GetMapping("")
     public String index(Model model) {
@@ -61,5 +67,26 @@ public class LoteController {
             model.addAttribute("error", e.getMessage());
             return ViewRouteHelper.LOTE_FORM;
         }
+    }
+    
+    @PostMapping("/registrarPedido")
+    public String completarCompra(@RequestParam("pedidoId") int pedidoId, Model model) {
+        Pedido pedido = pedidoService.findById(pedidoId);
+        if (pedido == null) {
+            model.addAttribute("error", "Pedido no encontrado");
+            return ViewRouteHelper.PEDIDO_LIST;
+        }
+        
+        Lote lote = new Lote();
+        lote.setCantidad(pedido.getCantidadPedida());
+        lote.setFechaRecepcion(LocalDate.now());
+        lote.setProveedor(pedido.getProveedor());
+        lote.setPrecioCompra(0.0);  // Ajusta esto según tus necesidades
+        lote.setProducto(pedido.getProducto());
+        lote.setAlmacen(almacenService.obtenerAlmacenUnico());
+        
+        loteService.registrarLote(lote);
+        pedidoService.deleteById(pedidoId);
+        return "redirect:/pedidos/lista";
     }
 }

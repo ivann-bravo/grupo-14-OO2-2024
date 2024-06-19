@@ -28,7 +28,11 @@ public class ViewRouteHelper {
     // VENTA
     public final static String VENTA_FORM = "venta/form";
     
-    /**** Redirects ****/
-    public final static String ROUTE = "/index";
+    //PEDIDO
+    public final static String PEDIDO_LIST = "pedidos/lista";
+    public final static String PEDIDO_FORM = "pedidos/registrar";
+  
+	  /**** Redirects ****/
+	  public final static String ROUTE = "/index";
 	
 }
