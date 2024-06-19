@@ -25,6 +25,8 @@ public class ViewRouteHelper {
   
     // VENTA
     public final static String VENTA_FORM = "venta/form";
+    public static final String VENTA_LISTA_USUARIO = "venta/listUser";
+    public static final String VENTA_LISTA_ADMIN = "venta/listAdmin";
     
     //PEDIDO
     public final static String PEDIDO_LIST = "pedidos/lista";

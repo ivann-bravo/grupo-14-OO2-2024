@@ -35,9 +35,9 @@ public class SecurityConfiguration {
 				.cors(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(auth -> {
 					auth.requestMatchers("/css/*", "/imgs/*", "/js/*", "/vendor/bootstrap/css/*",
-							"/vendor/jquery/*", "/vendor/bootstrap/js/*", "/api/v1/**", "/registerform", "/login").permitAll();
+							"/vendor/jquery/*", "/vendor/bootstrap/js/*", "/api/v1/**", "/registerform", "/login","/ventas/usuario").permitAll();
 //					auth.anyRequest().authenticated();
-					auth.requestMatchers("/productos", "/lotes").hasRole("ADMIN");
+					auth.requestMatchers("/productos", "/lotes", "/pedidos","/ventas/admin").hasRole("ADMIN");
 					auth.anyRequest().hasRole("USER");
 					
 				})

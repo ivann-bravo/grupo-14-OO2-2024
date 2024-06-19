@@ -2,6 +2,7 @@ package com.unla.grupo14.controllers;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -58,6 +59,30 @@ public class VentaController {
         return ViewRouteHelper.VENTA_FORM;
     }
     
+ // Método para mostrar ventas al usuario
+    @GetMapping("/usuario")
+    public String mostrarVentasUsuario(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userService.obtenerUserPorUsername(username);
+
+        // Obtener las ventas del usuario y los ítems asociados
+        List<Venta> ventasUsuario = ventaService.obtenerVentasPorUsuario(user.getIdUser());
+        model.addAttribute("ventasUsuario", ventasUsuario);
+
+        return ViewRouteHelper.VENTA_LISTA_USUARIO;
+    }
+
+    // Método para mostrar ventas al administrador
+    @GetMapping("/admin")
+    public String mostrarVentasAdmin(Model model) {
+        // Obtener todas las ventas y los ítems asociados
+        List<Venta> ventas = ventaService.obtenerTodasLasVentas();
+        model.addAttribute("ventasAdmin", ventas);
+
+        return ViewRouteHelper.VENTA_LISTA_ADMIN;
+    }
+    
     @PostMapping("/registrar")
     public String registrarVenta(@ModelAttribute("venta") Venta venta,
                                  @RequestParam("userId") int userId,
@@ -95,5 +120,4 @@ public class VentaController {
             return ViewRouteHelper.VENTA_FORM;
         }
     }
-
 }
