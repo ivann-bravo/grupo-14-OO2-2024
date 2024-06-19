@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,20 +35,29 @@ public class VentaController {
 
     @Autowired
     private IProductoService productoService;
+    
+    @GetMapping("")
+	public String index(Model model) {
+		return "redirect:/ventas/registrar";
+	}
 
     @GetMapping("/registrar")
     public String mostrarFormulario(Model model) {
         model.addAttribute("venta", new Venta());
+        
+        // Obtener el usuario autenticado
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User loggedInUser = userService.obtenerUserPorUsername(username);
 
-        List<User> users = userService.obtenerTodosLosUser();
-        model.addAttribute("users", users);
+        model.addAttribute("loggedInUser", loggedInUser);
 
         List<Producto> productos = productoService.obtenerTodosLosProductos();
         model.addAttribute("productos", productos);
 
         return ViewRouteHelper.VENTA_FORM;
     }
-
+    
     @PostMapping("/registrar")
     public String registrarVenta(@ModelAttribute("venta") Venta venta,
                                  @RequestParam("userId") int userId,
@@ -80,7 +91,7 @@ public class VentaController {
 
             return "redirect:/";
         } catch (Exception e) {
-            model.addAttribute("error", "Error al registrar la venta: " + e.getMessage());
+            model.addAttribute("error", e.getMessage());
             return ViewRouteHelper.VENTA_FORM;
         }
     }

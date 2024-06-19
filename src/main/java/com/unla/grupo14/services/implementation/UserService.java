@@ -112,4 +112,8 @@ public class UserService implements UserDetailsService {
             userRepository.save(user);
         }
 	}
+	
+	public com.unla.grupo14.entities.User obtenerUserPorUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

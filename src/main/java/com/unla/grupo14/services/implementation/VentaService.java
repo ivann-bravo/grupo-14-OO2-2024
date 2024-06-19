@@ -10,7 +10,6 @@ import com.unla.grupo14.entities.Producto;
 import com.unla.grupo14.entities.Stock;
 import com.unla.grupo14.repositories.IVentaRepository;
 import com.unla.grupo14.services.IVentaService;
-import com.unla.grupo14.repositories.IProductoRepository;
 import com.unla.grupo14.repositories.IStockRepository;
 
 @Service
@@ -18,9 +17,6 @@ public class VentaService implements IVentaService{
 
 	@Autowired
 	private IVentaRepository ventaRepository;
-
-	@Autowired
-	private IProductoRepository productoRepository;
 
 	@Autowired
 	private IStockRepository stockRepository;

@@ -82,23 +82,23 @@ public class ProductoService implements IProductoService {
     @Override
     @Transactional
     public String verificarAsociaciones(Producto producto) {
-        if (producto.getLote() != null) {
+        if (!producto.getLote().isEmpty()) {
             return "El producto tiene lote asociado y no se puede eliminar.";
         }
 
-        if (producto.getItem() != null) {
+        if (!producto.getItem().isEmpty()) {
             return "El producto tiene item asociado y no se puede eliminar.";
         }
 
-        if (producto.getPedido() != null) {
+        if (!producto.getPedido().isEmpty()) {
             return "El producto tiene pedido asociado y no se puede eliminar.";
         }
 
         if (producto.getStock() != null) {
-            return null; // Permitir eliminación con confirmación si tiene stock asociado
+            return null; 
         }
 
-        return null; // No tiene asociaciones que impidan la eliminación
+        return null;
     }
 
     @Override

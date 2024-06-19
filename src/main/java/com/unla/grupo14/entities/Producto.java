@@ -42,8 +42,8 @@ public class Producto {
     @OneToMany(mappedBy = "producto")
     private Set<Item> item;
     
-    @OneToOne(mappedBy = "producto")
-    private Pedido pedido;
+    @OneToMany(mappedBy = "producto")
+    private Set<Pedido> pedido;
     
     @OneToMany(mappedBy = "producto")
     private Set<Lote> lote;
