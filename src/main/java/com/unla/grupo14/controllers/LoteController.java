@@ -79,6 +79,8 @@ public class LoteController {
             return new RedirectView(ViewRouteHelper.PEDIDO);
         }
         
+        
+        
         Lote lote = new Lote();
         lote.setCantidad(pedido.getCantidadPedida());
         lote.setFechaRecepcion(LocalDate.now());

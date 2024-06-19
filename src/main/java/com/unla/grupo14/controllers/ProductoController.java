@@ -44,14 +44,14 @@ public class ProductoController {
 	}
 
 	@PostMapping("/registrar")
-	public RedirectView registrarProducto(@ModelAttribute("producto") Producto producto,
+	public String registrarProducto(@ModelAttribute("producto") Producto producto,
 			@RequestParam("cantMinima") int cantMinima, Model model) {
 		try {
 			productoService.registrarProducto(producto, cantMinima);
-			return new RedirectView(ViewRouteHelper.PRODUCTO);
+			return "redirect:/productos";
 		} catch (IllegalArgumentException e) {
 			model.addAttribute("error", e.getMessage());
-			return new RedirectView(ViewRouteHelper.PRODUCTO_FORM);
+			return ViewRouteHelper.PRODUCTO_FORM;
 		}
 	}
 	
