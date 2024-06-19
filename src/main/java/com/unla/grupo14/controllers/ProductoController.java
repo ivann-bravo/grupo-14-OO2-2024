@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.unla.grupo14.entities.Producto;
+import com.unla.grupo14.services.IPedidoService;
 import com.unla.grupo14.services.IProductoService;
 import com.unla.grupo14.helpers.ViewRouteHelper;
 
@@ -22,11 +23,16 @@ public class ProductoController {
 
 	@Autowired
 	private IProductoService productoService;
+	
+	@Autowired
+	private IPedidoService pedidoService;
 
 	@GetMapping("")
 	public String index(Model model) {
 		List<Producto> productos = productoService.obtenerTodosLosProductos();
+		List<String> warnings = pedidoService.getWarnings();
 		model.addAttribute("productos", productos);
+		model.addAttribute("warnings", warnings);
 		return ViewRouteHelper.PRODUCTO_LIST;
 	}
 

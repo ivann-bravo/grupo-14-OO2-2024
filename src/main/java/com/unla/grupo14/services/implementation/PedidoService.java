@@ -1,11 +1,14 @@
 package com.unla.grupo14.services.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.context.annotation.SessionScope;
 
 import com.unla.grupo14.entities.Pedido;
 import com.unla.grupo14.entities.Producto;
@@ -15,6 +18,7 @@ import com.unla.grupo14.repositories.IStockRepository;
 import com.unla.grupo14.services.IPedidoService;
 
 @Service
+@SessionScope
 public class PedidoService implements IPedidoService {
 
     @Autowired
@@ -22,16 +26,21 @@ public class PedidoService implements IPedidoService {
 
     @Autowired
     private IPedidoRepository pedidoRepository;
+    
+    private List<String> warnings = new ArrayList<>();
 
     @Override
     @Transactional
     @Scheduled(fixedRate = 30000) // Ejecutar cada 30 segundos
     public void verificarStock() {
         List<Stock> stocks = stockRepository.findAll();
+        warnings.clear();
 
         for (Stock s : stocks) {
             if (s.getCantidadAlmacenada() < s.getCantMinima()) {
                 Producto producto = s.getProducto();
+                
+                warnings.add("El producto " + producto.getNombre() + " tiene menos stock que el mínimo requerido.");
 
                 // Verificar si ya existe un pedido para este producto
                 if (!pedidoRepository.existsByProducto(producto)) {
@@ -71,4 +80,7 @@ public class PedidoService implements IPedidoService {
         pedidoRepository.deleteById(id);
     }
     
+    public List<String> getWarnings() {
+        return warnings;
+    }
 }
