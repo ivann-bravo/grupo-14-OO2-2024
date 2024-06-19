@@ -4,6 +4,8 @@ public class ViewRouteHelper {
 	/**** Views ****/
 	//HOME
 	public final static String INDEX = "home/index";
+	public static final String INDEXADMIN = "home/indexAdmin";
+    public static final String INDEXUSER = "home/indexUser";
 	public final static String HELLO = "home/hello";
 	
 	//USER
@@ -20,10 +22,6 @@ public class ViewRouteHelper {
     // LOTE
     public final static String LOTE_LIST = "lote/list";
     public final static String LOTE_FORM = "lote/form";
-    
-    // ALMACEN
-    public final static String ALMACEN_LIST = "almacen/list";
-    public final static String ALMACEN_FORM = "almacen/form";
   
     // VENTA
     public final static String VENTA_FORM = "venta/form";

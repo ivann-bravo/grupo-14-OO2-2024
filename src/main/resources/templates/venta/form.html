@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Registrar Venta</title>
+    <title>Realizar Compra</title>
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body class="d-flex justify-content-center align-items-center vh-100">
     <div class="container">
         <div class="card">
             <div class="card-header bg-secondary text-white d-flex justify-content-center">
-                <h1>Registrar Venta</h1>
+                <h1>Realizar Compra</h1>
             </div>
             <div class="card-body">
                 <form th:action="@{/ventas/registrar}" th:object="${venta}" method="post" class="form">
-                    <div class="form-group">
-                        <label for="user">Usuario:</label>
-                        <select id="user" name="userId" class="form-control" required>
-                            <option value="">Seleccione un usuario</option>
-                            <option th:each="user : ${users}" th:value="${user.idUser}" th:text="${user.username}"></option>
-                        </select>
-                    </div>
+					<input type="hidden" id="userId" name="userId" th:if="${loggedInUser != null}" th:value="${loggedInUser.idUser}" />
                     <div class="form-group mt-3">
                         <label for="producto">Producto:</label>
                         <select id="producto" name="productoId" class="form-control" required>
@@ -35,7 +29,7 @@
                         <input type="date" id="fechaCompra" th:field="*{fechaCompra}" required class="form-control"/>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-secondary">Registrar Venta</button>
+                        <button type="submit" class="btn btn-secondary">Comprar</button>
                         
                     </div>
                     <div th:if="${error}" class="mt-3">

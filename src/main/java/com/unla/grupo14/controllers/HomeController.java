@@ -1,5 +1,8 @@
 package com.unla.grupo14.controllers;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +18,24 @@ public class HomeController {
 
 	@GetMapping("/index")
 	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
-		//User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//modelAndView.addObject("username", user.getUsername());
-		return modelAndView;
-	}
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName(); 
+            for (GrantedAuthority authority : authentication.getAuthorities()) {
+                if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                    ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEXADMIN);
+                    modelAndView.addObject("username", username); 
+                    return modelAndView;
+                } else if (authority.getAuthority().equals("ROLE_USER")) {
+                    ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEXUSER);
+                    modelAndView.addObject("username", username);
+                    return modelAndView;
+                }
+            }
+        }
+        
+        return new ModelAndView("redirect:/login");
+    }
 
 	@GetMapping("/hello/{name}")
 	public ModelAndView helloParams2(@PathVariable("name") String name) {
