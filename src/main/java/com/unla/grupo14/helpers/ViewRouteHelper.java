@@ -3,10 +3,8 @@ package com.unla.grupo14.helpers;
 public class ViewRouteHelper {
 	/**** Views ****/
 	//HOME
-	public final static String INDEX = "home/index";
 	public static final String INDEXADMIN = "home/indexAdmin";
     public static final String INDEXUSER = "home/indexUser";
-	public final static String HELLO = "home/hello";
 	
 	//USER
 	public final static String USER_LOGIN = "user/login";
@@ -30,7 +28,11 @@ public class ViewRouteHelper {
     public final static String PEDIDO_LIST = "pedidos/lista";
     public final static String PEDIDO_FORM = "pedidos/registrar";
   
-	  /**** Redirects ****/
-	  public final static String ROUTE = "/index";
+	/**** Redirects ****/
+	public final static String ROUTE = "/index";
+	public final static String LOGIN = "/login";
+	public final static String LOTE = "/lotes";
+	public final static String PEDIDO = "/pedidos";
+	public final static String PRODUCTO = "/productos";
 	
 }

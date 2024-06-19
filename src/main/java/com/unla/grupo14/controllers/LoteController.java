@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo14.entities.Lote;
 import com.unla.grupo14.entities.Pedido;
@@ -48,7 +49,6 @@ public class LoteController {
     public String mostrarFormulario(Model model) {
         model.addAttribute("lote", new Lote());
         
-//        List<Producto> productos = productoService.obtenerProductosSinLoteAsociado();
         List<Producto> productos = productoService.obtenerTodosLosProductos();
         model.addAttribute("productos", productos);
         
@@ -56,37 +56,39 @@ public class LoteController {
     }
     
     @PostMapping("/registrar")
-    public String registrarLote(@ModelAttribute("lote") Lote lote, @RequestParam("productoId") int productoId, Model model) {
+    public RedirectView registrarLote(@ModelAttribute("lote") Lote lote,
+    		@RequestParam("productoId") int productoId, Model model) {
         try {
-        	Producto producto = productoService.findById(productoId);
-        	lote.setProducto(producto);
-        	lote.setAlmacen(almacenService.obtenerAlmacenUnico());
+            Producto producto = productoService.findById(productoId);
+            lote.setProducto(producto);
+            lote.setAlmacen(almacenService.obtenerAlmacenUnico());
             loteService.registrarLote(lote);
-            return "redirect:/lotes";
+            
+            return new RedirectView(ViewRouteHelper.LOTE);
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
-            return ViewRouteHelper.LOTE_FORM;
+            return new RedirectView(ViewRouteHelper.LOTE_FORM);
         }
     }
     
     @PostMapping("/registrarPedido")
-    public String completarCompra(@RequestParam("pedidoId") int pedidoId, Model model) {
+    public RedirectView completarCompra(@RequestParam("pedidoId") int pedidoId, Model model) {
         Pedido pedido = pedidoService.findById(pedidoId);
         if (pedido == null) {
             model.addAttribute("error", "Pedido no encontrado");
-            return ViewRouteHelper.PEDIDO_LIST;
+            return new RedirectView(ViewRouteHelper.PEDIDO);
         }
         
         Lote lote = new Lote();
         lote.setCantidad(pedido.getCantidadPedida());
         lote.setFechaRecepcion(LocalDate.now());
         lote.setProveedor(pedido.getProveedor());
-        lote.setPrecioCompra(0.0);  // Ajusta esto según tus necesidades
+        lote.setPrecioCompra(0.0);
         lote.setProducto(pedido.getProducto());
         lote.setAlmacen(almacenService.obtenerAlmacenUnico());
         
         loteService.registrarLote(lote);
         pedidoService.deleteById(pedidoId);
-        return "redirect:/pedidos/lista";
+        return new RedirectView(ViewRouteHelper.PEDIDO);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.unla.grupo14.entities.Producto;
 import com.unla.grupo14.services.IPedidoService;
@@ -43,14 +44,14 @@ public class ProductoController {
 	}
 
 	@PostMapping("/registrar")
-	public String registrarProducto(@ModelAttribute("producto") Producto producto,
+	public RedirectView registrarProducto(@ModelAttribute("producto") Producto producto,
 			@RequestParam("cantMinima") int cantMinima, Model model) {
 		try {
 			productoService.registrarProducto(producto, cantMinima);
-			return "redirect:/productos";
+			return new RedirectView(ViewRouteHelper.PRODUCTO);
 		} catch (IllegalArgumentException e) {
 			model.addAttribute("error", e.getMessage());
-			return ViewRouteHelper.PRODUCTO_FORM;
+			return new RedirectView(ViewRouteHelper.PRODUCTO_FORM);
 		}
 	}
 	
@@ -62,10 +63,10 @@ public class ProductoController {
     }
 	
 	@PostMapping("/modificar")
-    public String modificarProducto(@ModelAttribute("producto") Producto productoModificado,
+    public RedirectView modificarProducto(@ModelAttribute("producto") Producto productoModificado,
     		@RequestParam("cantMinima") int cantMinima, Model model) {
         productoService.modificarProducto(productoModificado, cantMinima);
-		return "redirect:/productos";
+		return new RedirectView(ViewRouteHelper.PRODUCTO);
     }
 	
 	@GetMapping("/eliminar/{idProducto}")
@@ -87,9 +88,9 @@ public class ProductoController {
 	}
 
 	@PostMapping("/eliminar/{idProducto}")
-	public String eliminarProducto(@PathVariable("idProducto") int id, Model model) {
+	public RedirectView eliminarProducto(@PathVariable("idProducto") int id, Model model) {
 	    productoService.eliminarProducto(id);
-	    return "redirect:/productos";
+	    return new RedirectView(ViewRouteHelper.PRODUCTO);
 	}
 	
 }

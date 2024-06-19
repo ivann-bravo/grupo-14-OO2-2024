@@ -12,6 +12,6 @@ public class ErrorController {
 	@GetMapping("/access-denied")
     public String accessDenied(Model model) {
         model.addAttribute("error", "No tienes los permisos necesarios para acceder a esta página.");
-        return ViewRouteHelper.INDEX;
+        return ViewRouteHelper.INDEXUSER;
     }
 }

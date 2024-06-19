@@ -18,6 +18,8 @@
 	                    <ul class="navbar-nav ms-auto">
 	                        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+							<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+							<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
 	                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
 	                    </ul>
 	                </div>
@@ -60,7 +62,7 @@
                 </tr>
             </tbody>
         </table>
-		<a href="/productos/registrar" class="btn btn-secondary">Registrar Nuevo Producto</a>
+		<a href="/productos/registrar" class="btn btn-secondary mb-5">Registrar Nuevo Producto</a>
 		<div th:if="${mensaje}" class="alert alert-danger mt-3">
 		    <p th:text="${mensaje}"></p>
 		    <div th:if="${confirmarEliminacion}">

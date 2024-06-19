@@ -28,6 +28,8 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
                         <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+						<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+						<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -40,7 +42,7 @@
                     <div class="text-center">
 						<h2 class="text-white-50 mx-auto mt-2 mb-3">¡Bienvenido <span th:text="${username}">Usuario</span>!</h2>
                         <h1 class="mx-auto my-0 text-uppercase">Stocky</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Tu sistema de stock preferido!</h2>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Tu sistema de stock preferido</h2>
                         <a class="btn btn-primary" href="/productos">Registra tus productos</a>
 						<div th:if="${error}" class="alert alert-danger mt-3" role="alert">
 							<span th:text="${error}"></span>
@@ -50,8 +52,28 @@
             </div>
         </header>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; GRUPO 14</div></footer>
-        <!-- Bootstrap core JS-->
+		<footer class="footer bg-black small text-center text-white-50">
+			<div class="container px-4 px-lg-5">
+				<div class="text-center mb-3">
+					Copyright &copy; <a href="https://github.com/ivann-bravo/grupo-14-OO2-2024" target="_blank" class="text-white-50">GRUPO 14</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="https://github.com/ivann-bravo" class="mx-2" target="_blank">
+				    	<img src="https://avatars.githubusercontent.com/u/116473927?s=60&v=4" alt="Avatar Ivan" class="rounded-circle" width="30" height="30">
+				    </a>
+				    <a href="https://github.com/lautamed" class="mx-2" target="_blank">
+				    	<img src="https://avatars.githubusercontent.com/u/149630279?s=60&v=4" alt="Avatar Lautaro" class="rounded-circle" width="30" height="30">
+				    </a>
+				    <a href="https://github.com/LorenteFacundo" class="mx-2" target="_blank">
+				    	<img src="https://avatars.githubusercontent.com/u/168698721?s=60&v=4" alt="Avatar Facundo" class="rounded-circle" width="30" height="30">
+				    </a>
+				    <a href="https://github.com/CamilaFlorenciaG" class="mx-2" target="_blank">
+				    	<img src="https://avatars.githubusercontent.com/u/143765622?s=60&v=4" alt="Avatar Camila" class="rounded-circle" width="30" height="30">
+				    </a>
+				</div>
+			</div>        
+		</footer>
+		<!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>

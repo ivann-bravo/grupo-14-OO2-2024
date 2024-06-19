@@ -36,6 +36,7 @@
 								 </select>
 							 </div>
                             <button type="submit" class="btn btn-secondary mt-4">Registrar</button>
+							<a th:href="@{/login}" class="btn btn-primary mt-4">Volver a login</a>
                         </form>
                         <div th:if="${message}" class="alert alert-success mt-3" role="alert">
                             <span th:text="${message}"></span>

@@ -20,6 +20,8 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
                     <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+					<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+					<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 </ul>
             </div>
@@ -27,6 +29,8 @@
     </nav>
     <div class="container text-center">
         <h1>Lista de Pedidos</h1>
+		<h6 th:if="${#lists.isEmpty(pedidos)}">Aún no tiene pedidos cargados</h6>
+		<h6 th:if="${not #lists.isEmpty(pedidos)}">Desde esta sección puede ver el reabastecimiento necesario</h6>
 		<div th:if="${warnings != null}">
 			<div th:each="warning : ${warnings}" class="alert alert-warning" role="alert">
 		    	<span th:text="${warning}"></span>
