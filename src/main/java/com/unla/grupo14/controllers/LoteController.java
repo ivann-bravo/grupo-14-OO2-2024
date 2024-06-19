@@ -83,7 +83,7 @@ public class LoteController {
         lote.setCantidad(pedido.getCantidadPedida());
         lote.setFechaRecepcion(LocalDate.now());
         lote.setProveedor(pedido.getProveedor());
-        lote.setPrecioCompra(0.0);
+        lote.setPrecioCompra(pedido.getCantidadPedida()*pedido.getProducto().getCosto()); //dinamico
         lote.setProducto(pedido.getProducto());
         lote.setAlmacen(almacenService.obtenerAlmacenUnico());
         
