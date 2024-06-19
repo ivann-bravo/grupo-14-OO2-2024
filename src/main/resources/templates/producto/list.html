@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Productos</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex justify-content-center align-items-center">
+	<!-- Navigation-->
+	        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark" id="mainNav">
+	            <div class="container px-4 px-lg-5">
+	                <a class="navbar-brand" href="../">Stocky</a>
+	                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	                    Menu
+	                    <i class="fas fa-bars"></i>
+	                </button>
+	                <div class="collapse navbar-collapse" id="navbarResponsive">
+	                    <ul class="navbar-nav ms-auto">
+	                        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+							<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+							<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
+	                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </nav>
+    <div class="container text-center mt-20">
+        <h1>Lista de Productos</h1>
+		<h6 th:if="${#lists.isEmpty(productos)}">Aún no tiene productos cargados</h6>
+		<h6 th:if="${not #lists.isEmpty(productos)}">Puede ver la lista de productos con su stock actualizado</h6>
+		<div th:if="${warnings != null}">
+			<div th:each="warning : ${warnings}" class="alert alert-warning" role="alert">
+				<span th:text="${warning}"></span>
+			</div>
+		</div>
+        <table class="table my-5 table-container">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Costo</th>
+                    <th>Precio Venta</th>
+					<th>Cant. Almacenada</th>
+					<th>Cant. Mínima</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.codigo}">Código</td>
+                    <td th:text="${producto.nombre}">Nombre</td>
+                    <td th:text="${producto.descripcion}">Descripción</td>
+                    <td th:text="${producto.costo}">Costo</td>
+                    <td th:text="${producto.precioVenta}">Precio Venta</td>
+					<td th:text="${producto.stock?.cantidadAlmacenada}">Cantidad Almacenada</td>
+					<td th:text="${producto.stock?.cantMinima}">Cantidad Mínima</td>
+					<td>
+						<a th:href="@{/productos/modificar/{idProducto}(idProducto=${producto.idProducto})}" class="btn btn-primary btn-sm">Modificar</a>
+						<a th:href="@{/productos/eliminar/{idProducto}(idProducto=${producto.idProducto})}" class="btn btn-danger btn-sm">Eliminar</a>
+					</td>
+                </tr>
+            </tbody>
+        </table>
+		<a href="/productos/registrar" class="btn btn-secondary mb-5">Registrar Nuevo Producto</a>
+		<div th:if="${mensaje}" class="alert alert-danger mt-3">
+		    <p th:text="${mensaje}"></p>
+		    <div th:if="${confirmarEliminacion}">
+		   		<form th:action="@{/productos/eliminar/{idProducto}(idProducto=${producto.idProducto})}" method="post">
+		        	<input type="hidden" name="_method" value="delete"/>
+		         	<button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+		      	 </form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

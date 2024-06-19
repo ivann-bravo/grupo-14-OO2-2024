@@ -38,4 +38,8 @@ public class Lote {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "almacen_id", nullable = false)
     private Almacen almacen;
+    
+    @ManyToOne
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 }

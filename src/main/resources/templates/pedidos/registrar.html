@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Pedido</title>
+    <link href="../css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+	<!-- Navigation-->
+				        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark" id="mainNav">
+				            <div class="container px-4 px-lg-5">
+				                <a class="navbar-brand" href="../">Stocky</a>
+				                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				                    Menu
+				                    <i class="fas fa-bars"></i>
+				                </button>
+				                <div class="collapse navbar-collapse" id="navbarResponsive">
+				                    <ul class="navbar-nav ms-auto">
+				                        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+				                        <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+										<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+										<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
+				                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+				                    </ul>
+				                </div>
+				            </div>
+				        </nav>
+	<div class="container">
+	        <div class="card">
+	            <div class="card-header bg-secondary text-white d-flex justify-content-center">
+	                <h1>Registrar Pedido</h1>
+	            </div>
+	            <div class="card-body">
+			        <form th:action="@{/pedidos/registrar}" th:object="${pedido}" method="post" class="form">
+			            <div class="form-group">
+			                <label for="cantidadPedida">Cantidad Pedida</label>
+			                <input type="number" class="form-control" id="cantidadPedida" th:field="*{cantidadPedida}" required>
+			            </div>
+			            <div class="form-group mt-3">
+			                <label for="proveedor">Proveedor</label>
+			                <input type="text" class="form-control" id="proveedor" th:field="*{proveedor}" required>
+			            </div>
+			            <div class="form-group mt-3">
+			                <label for="producto">Producto</label>
+			                <select class="form-control" id="producto" th:field="*{producto.idProducto}" required>
+			                    <option th:each="producto : ${productos}" 
+			                            th:value="${producto.idProducto}" 
+			                            th:text="${producto.nombre}">
+			                    </option>
+			                </select>
+			            </div>
+						<div class="mt-4">
+							<button type="submit" class="btn btn-primary">Registrar</button>
+													<a href="/pedidos" class="btn btn-dark ml-2">Volver a la lista de pedidos</a>
+						</div>
+					</form>
+    	</div>
+	</body>
+</html>

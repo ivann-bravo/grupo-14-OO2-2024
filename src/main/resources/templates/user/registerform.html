@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Registro de Usuario</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-dark d-flex justify-content-center align-items-center vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white d-flex justify-content-center">
+                        <h3>Registro de Usuario</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/registerform}" th:object="${user}" method="post">
+                            <div class="form-group">
+                                <label for="username">Nombre de usuario:</label>
+                                <input type="text" id="username" th:field="*{username}" class="form-control" required />
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="password">Contraseña:</label>
+                                <input type="password" id="password" th:field="*{password}" class="form-control" required />
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="enabled">Habilitado:</label>
+                                <input type="checkbox" id="enabled" th:field="*{enabled}" class="form-check-input ml-2" />
+							<div class="form-group mt-3">
+								 <label for="role">Rol:</label>
+								 <select id="role" name="role" class="form-control">
+								 	<option value="ROLE_USER">Usuario</option>
+								    <option value="ROLE_ADMIN">Administrador</option>
+								 </select>
+							 </div>
+                            <button type="submit" class="btn btn-secondary mt-4">Registrar</button>
+							<a th:href="@{/login}" class="btn btn-primary mt-4">Volver a login</a>
+                        </form>
+                        <div th:if="${message}" class="alert alert-success mt-3" role="alert">
+                            <span th:text="${message}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
