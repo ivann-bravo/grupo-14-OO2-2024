@@ -5,11 +5,19 @@ import com.unla.grupo14.entities.Producto;
 
 public interface IProductoService {
 	
-    Producto registrarProducto(Producto producto);
+    Producto registrarProducto(Producto producto, int cantMinima);
     
     List<Producto> obtenerTodosLosProductos();
     
     Producto findById(int idProducto);
     
     List<Producto> obtenerProductosSinLoteAsociado();
+
+	void eliminarProducto(int idProducto);
+
+	Producto modificarProducto(Producto productoModificado, int nuevaCantMinima);
+
+	String verificarAsociaciones(Producto producto);
+	
+	
 }
