@@ -54,7 +54,7 @@ public class VentaService implements IVentaService{
             }
             
         } catch (Exception e) {
-            // Manejar excepciones específicas o registrar errores
+            
             throw new RuntimeException("Error al registrar la venta: " + e.getMessage(), e);
         }
     }

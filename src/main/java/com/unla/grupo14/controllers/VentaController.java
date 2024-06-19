@@ -55,6 +55,7 @@ public class VentaController {
     }
     
     // Método para mostrar ventas al usuario
+    
     @GetMapping("/usuario")
     public String mostrarVentasUsuario(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -68,6 +69,7 @@ public class VentaController {
     }
 
     // Método para mostrar ventas al administrador
+    
     @GetMapping("/admin")
     public String mostrarVentasAdmin(Model model) {
     	
@@ -94,7 +96,7 @@ public class VentaController {
     }
     
     @PostMapping("/registrar")
-    public RedirectView registrarVenta(@ModelAttribute("venta") Venta venta,
+    public String registrarVenta(@ModelAttribute("venta") Venta venta,
                                  @RequestParam("userId") int userId,
                                  @RequestParam("productoId") int productoId,
                                  @RequestParam("cantidad") int cantidad,
@@ -123,10 +125,10 @@ public class VentaController {
             // Guardar la venta (con el item incluido)
             ventaService.registrarVenta(venta);
 
-            return new RedirectView(ViewRouteHelper.VENTA);
+            return ViewRouteHelper.ROUTE;
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return new RedirectView(ViewRouteHelper.VENTA_FORM);
+            return ViewRouteHelper.VENTA_FORM;
         }
     }
 }
