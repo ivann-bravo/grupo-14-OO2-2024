@@ -40,7 +40,7 @@ public class Lote {
     @JoinColumn(name = "almacen_id", nullable = false)
     private Almacen almacen;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 }

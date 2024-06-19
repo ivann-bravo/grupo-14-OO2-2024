@@ -7761,6 +7761,10 @@ textarea.form-control-lg {
   margin-top: 3rem !important;
 }
 
+.mt-20 {
+  margin-top: 20rem;
+}
+
 .mt-auto {
   margin-top: auto !important;
 }

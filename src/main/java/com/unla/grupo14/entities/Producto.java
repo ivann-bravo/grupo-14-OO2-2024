@@ -1,10 +1,13 @@
 package com.unla.grupo14.entities;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,12 +39,12 @@ public class Producto {
     @OneToOne(mappedBy = "producto")
     private Stock stock;
 
-    @OneToOne(mappedBy = "producto")
-    private Item item;
+    @OneToMany(mappedBy = "producto")
+    private Set<Item> item;
     
     @OneToOne(mappedBy = "producto")
     private Pedido pedido;
     
-    @OneToOne(mappedBy = "producto")
-    private Lote lote;
+    @OneToMany(mappedBy = "producto")
+    private Set<Lote> lote;
 }
