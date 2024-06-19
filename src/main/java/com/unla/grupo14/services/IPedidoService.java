@@ -10,4 +10,5 @@ public interface IPedidoService {
 	void savePedido(Pedido pedido);
 	public Pedido findById(int id);
 	public void deleteById(int id);
+	public List<String> getWarnings();
 }

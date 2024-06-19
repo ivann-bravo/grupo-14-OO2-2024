@@ -31,6 +31,7 @@ public class PedidoController {
     public String listarPedidos(Model model) {
         List<Pedido> pedidos = pedidoService.findAllPedidos();
         model.addAttribute("pedidos", pedidos);
+        model.addAttribute("warnings", pedidoService.getWarnings());
         return ViewRouteHelper.PEDIDO_LIST; // Ruta correcta a la plantilla Thymeleaf
     }
     

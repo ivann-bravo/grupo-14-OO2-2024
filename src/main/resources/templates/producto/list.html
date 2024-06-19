@@ -27,6 +27,11 @@
         <h1>Lista de Productos</h1>
 		<h6 th:if="${#lists.isEmpty(productos)}">Aún no tiene productos cargados</h6>
 		<h6 th:if="${not #lists.isEmpty(productos)}">Puede ver la lista de productos con su stock actualizado</h6>
+		<div th:if="${warnings != null}">
+			<div th:each="warning : ${warnings}" class="alert alert-warning" role="alert">
+				<span th:text="${warning}"></span>
+			</div>
+		</div>
         <table class="table my-5 table-container">
             <thead>
                 <tr>
