@@ -47,7 +47,7 @@ public class PedidoService implements IPedidoService {
 
                     // Calcular la cantidad a pedir
                     int cantidadFaltante = s.getCantMinima() - s.getCantidadAlmacenada();
-                    int cantidadPedida = cantidadFaltante * 2; // Al menos el doble de lo que falta
+                    int cantidadPedida = s.getCantMinima() + cantidadFaltante; // para tener el doble de la cantidad minima
 
                     pedido.setCantidadPedida(cantidadPedida);
                     pedido.setProducto(producto);
