@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrar Lote</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
+	<!-- Navigation-->
+			        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark" id="mainNav">
+			            <div class="container px-4 px-lg-5">
+			                <a class="navbar-brand" href="../">Stocky</a>
+			                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			                    Menu
+			                    <i class="fas fa-bars"></i>
+			                </button>
+			                <div class="collapse navbar-collapse" id="navbarResponsive">
+			                    <ul class="navbar-nav ms-auto">
+			                        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+			                        <li class="nav-item"><a class="nav-link" href="/lotes">Lotes</a></li>
+									<li class="nav-item"><a class="nav-link" href="/pedidos">Pedidos</a></li>
+									<li class="nav-item"><a class="nav-link" href="/ventas">Ventas</a></li>
+			                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+			                    </ul>
+			                </div>
+			            </div>
+			        </nav>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-secondary text-white d-flex justify-content-center">
+                <h1>Registrar Lote</h1>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/lotes/registrar}" th:object="${lote}" method="post" class="form">
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" th:field="*{cantidad}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="fechaRecepcion">Fecha de Recepción:</label>
+                        <input type="date" id="fechaRecepcion" th:field="*{fechaRecepcion}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="proveedor">Proveedor:</label>
+                        <input type="text" id="proveedor" th:field="*{proveedor}" required class="form-control"/>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="precioCompra">Precio de Compra:</label>
+                        <input type="number" id="precioCompra" th:field="*{precioCompra}" step="0.01" required class="form-control"/>
+                    </div>
+					<div class="form-group mt-3">
+					    <label for="productoId">Producto:</label>
+					    <select id="productoId" name="productoId" class="form-control" required>
+					        <option value="">Seleccione un producto</option>
+					        <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.nombre}"></option>
+					    </select>
+					</div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-secondary">Registrar</button>
+                        <a href="/lotes" class="btn btn-dark ml-2">Volver a la lista de lotes</a>
+                    </div>
+                    <div th:if="${error}" class="mt-3">
+                        <p th:text="${error}" class="text-danger"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
